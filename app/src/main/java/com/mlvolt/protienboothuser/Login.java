@@ -25,6 +25,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.concurrent.TimeUnit;
 
 public class Login extends AppCompatActivity {
+    
+    private String "Hello world.";
 
 
     EditText name;
