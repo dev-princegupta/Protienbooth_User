@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/pbbackground"
+    tools:context=".GymAlreadyMember">
+
+    <ImageView
+        android:id="@+id/gym_alreaady_member_pic"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/profilepic"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/gym_alreaady_member_name"
+        android:layout_width="250dp"
+
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/white"
+        android:hint="Name"
+        android:inputType="text"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/gym_alreaady_member_pic"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/gym_alreaady_member_contact"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/white"
+        android:hint="Contact"
+        android:inputType="phone"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/gym_alreaady_member_pic"
+        app:layout_constraintTop_toBottomOf="@id/gym_alreaady_member_name" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/gym_alreaady_member_submit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="44dp"
+        android:layout_marginTop="44dp"
+        android:text="sumbit"
+        android:textColor="@color/white"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gym_alreaady_member_contact" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/gym_alreaady_member_cancel_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="Cancel"
+        android:textColor="@color/white"
+        app:layout_constraintHorizontal_bias="0.906"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/gym_alreaady_member_submit_button"
+        app:layout_constraintTop_toBottomOf="@id/gym_alreaady_member_contact" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

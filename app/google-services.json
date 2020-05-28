@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "766825967955",
+    "firebase_url": "https://protienbooth.firebaseio.com",
+    "project_id": "protienbooth",
+    "storage_bucket": "protienbooth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:766825967955:android:c128176a5c79541ca831a6",
+        "android_client_info": {
+          "package_name": "com.mlvolt.protienboothuser"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "766825967955-28rnirtg4rboodgih917oqfa59dckpq5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mlvolt.protienboothuser",
+            "certificate_hash": "c553ced14c77077fcc6586a4560f414274e117b7"
+          }
+        },
+        {
+          "client_id": "766825967955-q43gg7rhv0kk8l49gi2d3pncpmp9mmap.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfGL3kN7Ua3ykn6P7ihOV-Gj4Wm4FdOuY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "766825967955-q43gg7rhv0kk8l49gi2d3pncpmp9mmap.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

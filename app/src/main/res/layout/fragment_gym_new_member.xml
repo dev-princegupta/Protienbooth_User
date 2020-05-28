@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/pbbackground"
+    tools:context=".GymNewMember">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/gym_new_member_input_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="@color/white"
+        android:hint="Name"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+
+        android:textColor="@color/design_default_color_on_primary"
+        android:textColorHint="@color/white"
+        android:textSize="10dp"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toRightOf="@+id/gym_new_member_pic"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/gym_new_memper_input_contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:backgroundTint="@color/white"
+        android:hint="Contact"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="10dp"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toRightOf="@+id/gym_new_member_pic"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gym_new_member_input_name" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/gym_new_member_pic"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/profilepic"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/gym_new_member_input_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:backgroundTint="@color/white"
+        android:hint="DD//MM//YY"
+        android:inputType="datetime"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="10dp"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toRightOf="@+id/gym_new_member_pic"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gym_new_memper_input_contact" />
+
+    <TextView
+         android:id="@+id/gym_payment"
+         app:layout_constraintTop_toBottomOf="@id/gym_new_member_pic"
+         app:layout_constraintLeft_toLeftOf="parent"
+         android:layout_marginLeft="28dp"
+         android:layout_marginTop="8dp"
+         android:textColor="@color/white"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:text="PAYMENT"/>
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/gym_payment_upi"
+        android:layout_width="50dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="12dp"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:text="UPI"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gym_payment" />
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/gym_payment_cash"
+        android:layout_width="60dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="34dp"
+        android:layout_marginTop="8dp"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:text="CASH"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gym_payment_upi" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/gym_new_member_next_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="60dp"
+        android:layout_marginTop="12dp"
+
+
+        android:text="submit"
+        android:textSize="10sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gym_payment" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/gym_new_member_cancle_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="12dp"
+
+        android:text="cancel"
+        android:textSize="10sp"
+        app:layout_constraintRight_toLeftOf="@id/gym_new_member_next_button"
+        app:layout_constraintTop_toBottomOf="@+id/gym_payment" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
