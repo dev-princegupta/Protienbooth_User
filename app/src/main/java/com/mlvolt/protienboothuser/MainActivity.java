@@ -19,6 +19,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bottomNavigationView = findViewById(R.id.botton_navigation_view);
+        setFragment(new Gym());
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

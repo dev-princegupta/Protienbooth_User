@@ -5,6 +5,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -32,34 +35,38 @@ import com.mlvolt.protienboothuser.Model.GymsInfo;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener, GoogleMap.OnMarkerClickListener {
 
+    public static String gym_name;
     private GoogleMap mMap;
     DatabaseReference databaseReference;
-
     Location currentLocation;
     FusedLocationProviderClient fusedLocationProviderClient;
     private static  final int REQUEST_CODE = 101;
-
+    Marker mMarker;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-
-
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-        fetchLastLocation();
-
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Gyms");
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+
+
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(MapsActivity.this);
+        fetchLastLocation();
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+
+
+    }
 
     private void fetchLastLocation() {
 
-        ActivityCompat.requestPermissions(this, new String[]
+        ActivityCompat.requestPermissions(MapsActivity.this, new String[]
                 {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
-        Task<Location> task = fusedLocationProviderClient.getLastLocation();
+        Task<Location>task = fusedLocationProviderClient.getLastLocation();
         task.addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
@@ -68,10 +75,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                             .findFragmentById(R.id.map);
                     mapFragment.getMapAsync(MapsActivity.this);
-
-                }
-                else {
-                    System.out.print("location not found");
                 }
             }
         });
@@ -81,6 +84,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
         googleMap.setOnMarkerClickListener(this);
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
@@ -92,20 +96,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .build();
         mMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
-
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for(DataSnapshot s : dataSnapshot.getChildren()){
+                for(DataSnapshot s: dataSnapshot.getChildren()){
                     GymsInfo gymsInfo = s.getValue(GymsInfo.class);
                     LatLng latLng = new LatLng(gymsInfo.getLatitude(), gymsInfo.getLongitude());
                     mMap.addMarker(new MarkerOptions().position(latLng).title(gymsInfo.getName())).setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET));
-
-
                 }
-
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -119,12 +119,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @Override
+    public boolean onMarkerClick(Marker marker) {
+
+        gym_name = marker.getTitle();
+        Intent intent = new Intent(MapsActivity.this, MainActivity.class);
+        startActivity(intent);
+        MapsActivity.this.finish();
+
+
+        //  Toast.makeText(getApplicationContext(),"", Toast.LENGTH_LONG).show();
+
+        return false;
+    }
+
+    @Override
     public void onLocationChanged(Location location) {
 
     }
 
-    @Override
-    public boolean onMarkerClick(Marker marker) {
-        return false;
-    }
+
+
+
 }

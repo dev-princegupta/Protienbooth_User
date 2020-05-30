@@ -68,7 +68,7 @@ public class Login extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 // Successfully signed in
 
-                Intent intent3 = new Intent(Login.this, MainActivity.class);
+                Intent intent3 = new Intent(Login.this, MapsActivity.class);
                 Login.this.startActivity(intent3);
                 Login.this.finish();
 

@@ -25,7 +25,7 @@ public class SplachScreen extends AppCompatActivity {
                 // Start your app main activity
                 FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
                 if(current_user!=null){
-                    Intent intent1 = new Intent(SplachScreen.this, MainActivity.class);
+                    Intent intent1 = new Intent(SplachScreen.this, MapsActivity.class);
                     SplachScreen.this.startActivity(intent1);
                     SplachScreen.this.finish();
 
