@@ -22,8 +22,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.mlvolt.protienboothuser.Model.TodayModel;
 
 import java.text.DateFormatSymbols;
 import java.util.Arrays;
@@ -33,7 +37,7 @@ import java.util.concurrent.TimeUnit;
 public class Login extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 0;
-    private FirebaseAuth firebaseAuth;
+    DatabaseReference databaseReference;
 
     List<AuthUI.IdpConfig> providers = Arrays.asList(
 
@@ -45,12 +49,9 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
 
-    }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
         startActivityForResult(AuthUI.getInstance()
                         .createSignInIntentBuilder()
                         .setAvailableProviders(providers)
@@ -58,6 +59,7 @@ public class Login extends AppCompatActivity {
                 ,RC_SIGN_IN);
 
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -67,6 +69,9 @@ public class Login extends AppCompatActivity {
 
             if (resultCode == RESULT_OK) {
                 // Successfully signed in
+                String currentUserPhoneNo = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber();
+                TodayModel todayModel = new TodayModel("Empty", "Update", "No", "No", "No", "0");
+                databaseReference.child(currentUserPhoneNo).setValue(todayModel);
 
                 Intent intent3 = new Intent(Login.this, MapsActivity.class);
                 Login.this.startActivity(intent3);

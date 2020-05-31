@@ -213,7 +213,8 @@
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-        <!--WORKOUT-->
+        <!--WORKOUT
+        chrome b-->
         <androidx.cardview.widget.CardView
             android:layout_width="185dp"
             android:layout_height="100dp"

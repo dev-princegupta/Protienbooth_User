@@ -9,8 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,7 +43,10 @@ public class Today extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_today, container, false);
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child("u1");
+
+        final String userContactNo = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber();
+        Toast.makeText(getContext(), userContactNo, Toast.LENGTH_LONG).show();
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
 
         weight = view.findViewById(R.id.weight);
         workout = view.findViewById(R.id.workout);
@@ -54,12 +60,12 @@ public class Today extends Fragment {
         ValueEventListener valueEventListener= new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                TodayModel todayModel = dataSnapshot.getValue(TodayModel.class);
+                TodayModel todayModel = dataSnapshot.child(userContactNo).getValue(TodayModel.class);
                 weight.setText(todayModel.getWeight());
                 workout.setText(todayModel.getWorkout());
                 preworkout.setText(todayModel.getPreworkout());
                 postworkout.setText(todayModel.getPostworkout());
-                barGraph.fun(1000, Integer.parseInt(todayModel.getYour()));
+                barGraph.fun(1000, Integer.parseInt(todayModel.getYourProteinQuantity()));
 
             }
 

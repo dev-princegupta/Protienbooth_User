@@ -31,22 +31,24 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.mlvolt.protienboothuser.Model.GymModel;
 import com.mlvolt.protienboothuser.Model.GymsInfo;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener, GoogleMap.OnMarkerClickListener {
 
     public static String gym_name;
     private GoogleMap mMap;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReferenceGymInfo, databaseReferenceGymModel;
     Location currentLocation;
     FusedLocationProviderClient fusedLocationProviderClient;
     private static  final int REQUEST_CODE = 101;
     Marker mMarker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Gyms");
+        databaseReferenceGymInfo = FirebaseDatabase.getInstance().getReference().child("Gyms");
 
 
     }
@@ -96,7 +98,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .build();
         mMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReferenceGymInfo.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot s: dataSnapshot.getChildren()){
@@ -124,7 +126,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         gym_name = marker.getTitle();
         Intent intent = new Intent(MapsActivity.this, MainActivity.class);
         startActivity(intent);
-        MapsActivity.this.finish();
 
 
         //  Toast.makeText(getApplicationContext(),"", Toast.LENGTH_LONG).show();

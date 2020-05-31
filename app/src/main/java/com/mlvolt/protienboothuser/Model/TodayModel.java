@@ -1,13 +1,31 @@
 package com.mlvolt.protienboothuser.Model;
 
 public class TodayModel {
-    String weight;
-    String workout;
-    String preworkout;
-    String postworkout;
-    String your;
+    public String userName;
+    public String weight;
+    public String workout;
+    public String preworkout;
+    public String postworkout;
+    public String yourProteinQuantity;
 
     public TodayModel() {
+    }
+
+    public TodayModel(String userName, String weight, String workout, String preworkout, String postworkout, String yourProteinQuantity) {
+        this.userName = userName;
+        this.weight = weight;
+        this.workout = workout;
+        this.preworkout = preworkout;
+        this.postworkout = postworkout;
+        this.yourProteinQuantity = yourProteinQuantity;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getWeight() {
@@ -42,19 +60,11 @@ public class TodayModel {
         this.postworkout = postworkout;
     }
 
-    public String getYour() {
-        return your;
+    public String getYourProteinQuantity() {
+        return yourProteinQuantity;
     }
 
-    public void setYour(String your) {
-        this.your = your;
-    }
-
-    public TodayModel(String weight, String workout, String preworkout, String postworkout, String your) {
-        this.weight = weight;
-        this.workout = workout;
-        this.preworkout = preworkout;
-        this.postworkout = postworkout;
-        this.your = your;
+    public void setYourProteinQuantity(String yourProteinQuantity) {
+        this.yourProteinQuantity = yourProteinQuantity;
     }
 }

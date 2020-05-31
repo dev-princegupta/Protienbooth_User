@@ -1,33 +1,29 @@
 package com.mlvolt.protienboothuser.Model;
 
 public class GymModel {
-    public String gym_name;
-    public String contact_no;
+    public String timing;
     public String price;
+    public String about;
+    public String rating;
 
     public GymModel() {
     }
 
-    public GymModel(String gym_name, String contact_no, String price) {
-        this.gym_name = gym_name;
-        this.contact_no = contact_no;
+
+
+    public GymModel(String timing, String price, String about, String rating) {
+        this.timing = timing;
         this.price = price;
+        this.about = about;
+        this.rating = rating;
     }
 
-    public String getGym_name() {
-        return gym_name;
+    public String getTiming() {
+        return timing;
     }
 
-    public void setGym_name(String gym_name) {
-        this.gym_name = gym_name;
-    }
-
-    public String getContact_no() {
-        return contact_no;
-    }
-
-    public void setContact_no(String contact_no) {
-        this.contact_no = contact_no;
+    public void setTiming(String timing) {
+        this.timing = timing;
     }
 
     public String getPrice() {
@@ -36,5 +32,20 @@ public class GymModel {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 }
