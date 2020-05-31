@@ -11,6 +11,8 @@ in user mode features and values for users like-
   6) Daily Protein requirement calculation
   7) body weight, (sensors to get the condition of body)
   8) body development roadmap.
+Are provided.  
+  
   
   
   
