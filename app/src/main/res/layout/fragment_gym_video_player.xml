@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".GymVideoPlayerFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+        android:id="@+id/Youtube_player_video"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        app:videoId="X_9VoqR5ojM"
+        app:autoPlay="true"
+        app:showFullScreenButton="false"
+        app:showYouTubeButton="false"/>
+
+
+</LinearLayout>

@@ -40,6 +40,7 @@ public class Gym extends Fragment {
     TextView gymName, gymJoiningFee, gymTiming, gymAbout;
     RatingBar gymRating;
     Button gymJoiningbutton;
+    Button videoPlayButton;
     DatabaseReference databaseReference;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,6 +53,7 @@ public class Gym extends Fragment {
         gymTiming = view.findViewById(R.id.gym_timing);
         gymAbout = view.findViewById(R.id.gym_about);
         gymRating = view.findViewById(R.id.gym_rating);
+        videoPlayButton = view.findViewById(R.id.youtube_video_play_button);
         gymRating.setEnabled(true);
 
         gym = MapsActivity.gym_name;
@@ -89,6 +91,17 @@ public class Gym extends Fragment {
             }
         });
 
+        setVideoFragment(new GymImageFragment());
+
+        videoPlayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setVideoFragment(new GymVideoPlayerFragment());
+            }
+        });
+
+
+
 
 
         return view;
@@ -99,6 +112,11 @@ public class Gym extends Fragment {
         FragmentTransaction fragmentTransaction= getChildFragmentManager().beginTransaction().replace(R.id.gym_joining_frame, fragment);
         fragmentTransaction.commit();
 
+    }
+
+    public void setVideoFragment(Fragment fragment){
+        FragmentTransaction fragmentTransaction  = getChildFragmentManager().beginTransaction().replace(R.id.image_video_container, fragment);
+        fragmentTransaction.commit();
     }
 
 

@@ -21,6 +21,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.mlvolt.protienboothuser.Model.TodayModel;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,8 +39,12 @@ public class Today extends Fragment {
     }
 
     TextView workout, weight, postworkout, preworkout;
+    TextView todayDate;
     BarGraph barGraph;
     DatabaseReference databaseReference;
+    Calendar calendar;
+    SimpleDateFormat simpleDateFormat;
+    String date;
 // ...
 
     @Override
@@ -52,9 +61,14 @@ public class Today extends Fragment {
         workout = view.findViewById(R.id.workout);
         preworkout = view.findViewById(R.id.preworkout);
         postworkout = view.findViewById(R.id.postworkout);
+        todayDate = view.findViewById(R.id.today_date);
         barGraph = new BarGraph();
         barGraph.setBarChart((BarChart) view.findViewById(R.id.barchart));
 
+        calendar = Calendar.getInstance();
+        simpleDateFormat = new SimpleDateFormat("MMM d");
+        date = simpleDateFormat.format(calendar.getTime());
+        todayDate.setText(date);
 
 
         ValueEventListener valueEventListener= new ValueEventListener() {
