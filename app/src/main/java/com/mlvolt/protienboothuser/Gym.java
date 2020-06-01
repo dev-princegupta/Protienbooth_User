@@ -94,19 +94,19 @@ public class Gym extends Fragment {
 
 
         setVideoFragment(new GymImageFragment());
-
+        videoPlayButton.setText("Video");
         videoPlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if(flag==0){
-                    setVideoFragment(new GymImageFragment());
-                    flag=1;
-                    videoPlayButton.setText("Video");
-                }else{
                     setVideoFragment(new GymVideoPlayerFragment());
-                    flag=0;
+                    flag=1;
                     videoPlayButton.setText("Image");
+                }else{
+                    setVideoFragment(new GymImageFragment());
+                    flag=0;
+                    videoPlayButton.setText("Video");
                 }
 
 
