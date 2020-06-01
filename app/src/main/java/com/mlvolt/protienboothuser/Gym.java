@@ -36,6 +36,7 @@ public class Gym extends Fragment {
     public Gym() {
         // Required empty public constructor
     }
+    public int flag=0;
     public  String gym;
     TextView gymName, gymJoiningFee, gymTiming, gymAbout;
     RatingBar gymRating;
@@ -91,12 +92,24 @@ public class Gym extends Fragment {
             }
         });
 
+
         setVideoFragment(new GymImageFragment());
 
         videoPlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setVideoFragment(new GymVideoPlayerFragment());
+
+                if(flag==0){
+                    setVideoFragment(new GymImageFragment());
+                    flag=1;
+                    videoPlayButton.setText("Video");
+                }else{
+                    setVideoFragment(new GymVideoPlayerFragment());
+                    flag=0;
+                    videoPlayButton.setText("Image");
+                }
+
+
             }
         });
 

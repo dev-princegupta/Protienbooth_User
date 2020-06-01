@@ -46,21 +46,26 @@
                 android:id="@+id/youtube_video_play_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
+                android:backgroundTint="#ff0000"
+                android:elevation="8dp"
+                android:text="Video"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:text="Play"
-                android:layout_marginLeft="150dp"/>
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:layout_marginTop="4dp"
-                app:layout_constraintRight_toRightOf="@+id/gym_joining_fee"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginRight="55dp"
+                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="55dp"
+                android:layout_marginTop="4dp"
                 android:text="@string/Rupee_symbol"
                 android:textColor="@color/white"
-                android:textSize="28sp"/>
+                android:textSize="28sp"
+                app:layout_constraintRight_toRightOf="@+id/gym_joining_fee"
+                app:layout_constraintTop_toTopOf="parent" />
             <TextView
                 android:layout_margin="4dp"
                 android:id="@+id/gym_joining_fee"

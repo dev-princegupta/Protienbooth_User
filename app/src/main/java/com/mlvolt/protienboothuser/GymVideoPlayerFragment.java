@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 
 /**
@@ -19,7 +20,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 public class GymVideoPlayerFragment extends Fragment {
 
 
-    YouTubePlayer youTubePlayer;
+    YouTubePlayerView youTubePlayerView;
     public GymVideoPlayerFragment() {
         // Required empty public constructor
     }
@@ -31,10 +32,10 @@ public class GymVideoPlayerFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_gym_video_player, container, false);
 
-        youTubePlayer = view.findViewById(R.id.Youtube_player_video);
-        getLifecycle().addObserver((LifecycleObserver) youTubePlayer);
+        youTubePlayerView = view.findViewById(R.id.Youtube_player_video);
+        getLifecycle().addObserver(youTubePlayerView);
 
-        youTubePlayer.addListener(new AbstractYouTubePlayerListener() {
+        youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override
             public void onReady(YouTubePlayer youTubePlayer) {
                 super.onReady(youTubePlayer);
@@ -42,6 +43,8 @@ public class GymVideoPlayerFragment extends Fragment {
                 youTubePlayer.loadVideo(videoId, 1);
             }
         });
+
+
 
 
         return view;
