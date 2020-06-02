@@ -24,5 +24,6 @@ public class GymsInfo {
 
     public double getLongitude() {
         return longitude;
+
     }
 }

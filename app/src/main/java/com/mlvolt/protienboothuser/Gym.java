@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,12 +21,14 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.mlvolt.protienboothuser.Model.GymModel;
+import com.mlvolt.protienboothuser.Model.InventoryData;
 
 
 /**
@@ -43,6 +47,8 @@ public class Gym extends Fragment {
     Button gymJoiningbutton;
     Button videoPlayButton;
     DatabaseReference databaseReference;
+    RecyclerView recyclerView;
+    InventoryAdaptor inventoryAdaptor;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -55,7 +61,11 @@ public class Gym extends Fragment {
         gymAbout = view.findViewById(R.id.gym_about);
         gymRating = view.findViewById(R.id.gym_rating);
         videoPlayButton = view.findViewById(R.id.youtube_video_play_button);
+        recyclerView = view.findViewById(R.id.recycler_view);
         gymRating.setEnabled(true);
+
+
+
 
         gym = MapsActivity.gym_name;
         gymName.setText(MapsActivity.gym_name);
@@ -113,13 +123,33 @@ public class Gym extends Fragment {
             }
         });
 
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        FirebaseRecyclerOptions<InventoryData> options = new FirebaseRecyclerOptions.Builder<InventoryData>()
+                .setQuery(FirebaseDatabase.getInstance().getReference().child("test"), InventoryData.class)
+                .build();
 
+        inventoryAdaptor = new InventoryAdaptor(options);
+        recyclerView.setAdapter(inventoryAdaptor);
 
 
 
         return view;
     }
 
+
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        inventoryAdaptor.stopListening();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        inventoryAdaptor.stopListening();
+    }
 
     public void setFragment(Fragment fragment){
         FragmentTransaction fragmentTransaction= getChildFragmentManager().beginTransaction().replace(R.id.gym_joining_frame, fragment);
@@ -131,7 +161,6 @@ public class Gym extends Fragment {
         FragmentTransaction fragmentTransaction  = getChildFragmentManager().beginTransaction().replace(R.id.image_video_container, fragment);
         fragmentTransaction.commit();
     }
-
 
 
 
