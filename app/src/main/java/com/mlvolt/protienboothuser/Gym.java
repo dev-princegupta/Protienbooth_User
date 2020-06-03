@@ -125,7 +125,7 @@ public class Gym extends Fragment {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         FirebaseRecyclerOptions<InventoryData> options = new FirebaseRecyclerOptions.Builder<InventoryData>()
-                .setQuery(FirebaseDatabase.getInstance().getReference().child("test"), InventoryData.class)
+                .setQuery(FirebaseDatabase.getInstance().getReference().child("Gyms Inventory").child("GYM X"), InventoryData.class)
                 .build();
 
         inventoryAdaptor = new InventoryAdaptor(options);
@@ -142,7 +142,7 @@ public class Gym extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        inventoryAdaptor.stopListening();
+        inventoryAdaptor.startListening();
     }
 
     @Override
