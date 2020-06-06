@@ -28,8 +28,8 @@ public class GymNewMember extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_gym_new_member, container, false);
-        cancel = view.findViewById(R.id.gym_new_member_cancle_button);
-        submit = view.findViewById(R.id.gym_new_member_next_button);
+        cancel = view.findViewById(R.id.gym_new_member_cancel_button);
+        submit = view.findViewById(R.id.gym_new_member_submit_button);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

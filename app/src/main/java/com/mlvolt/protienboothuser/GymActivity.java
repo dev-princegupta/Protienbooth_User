@@ -1,26 +1,17 @@
 package com.mlvolt.protienboothuser;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.LayoutInflater;
+import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
@@ -31,16 +22,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.mlvolt.protienboothuser.Model.GymModel;
 import com.mlvolt.protienboothuser.Model.InventoryData;
 
+public class GymActivity extends AppCompatActivity {
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class Gym extends Fragment {
-
-
-    public Gym() {
-        // Required empty public constructor
-    }
     public int flag=0;
     public  String gym;
     TextView gymName, gymJoiningFee, gymTiming, gymAbout;
@@ -51,22 +34,19 @@ public class Gym extends Fragment {
     RecyclerView recyclerView;
     InventoryAdaptor inventoryAdaptor;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view =inflater.inflate(R.layout.fragment_gym, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_gym);
 
-        gymName = view.findViewById(R.id.gym_name);
-        gymJoiningFee = view.findViewById(R.id.gym_joining_fee);
-        gymTiming = view.findViewById(R.id.gym_timing);
-        gymAbout = view.findViewById(R.id.gym_about);
-        gymRating = view.findViewById(R.id.gym_rating);
-        videoPlayButton = view.findViewById(R.id.youtube_video_play_button);
-        recyclerView = view.findViewById(R.id.recycler_view);
+        gymName = findViewById(R.id.gym_name);
+        gymJoiningFee = findViewById(R.id.gym_joining_fee);
+        gymTiming = findViewById(R.id.gym_timing);
+        gymAbout = findViewById(R.id.gym_about);
+        gymRating = findViewById(R.id.gym_rating);
+        videoPlayButton = findViewById(R.id.youtube_video_play_button);
+        recyclerView = findViewById(R.id.recycler_view);
+        gymJoiningbutton = findViewById(R.id.gym_joining_button);
         gymRating.setEnabled(true);
-
-
-
 
         gym = MapsActivity.gym_name;
         gymName.setText(MapsActivity.gym_name);
@@ -113,7 +93,6 @@ public class Gym extends Fragment {
         });
 
 
-        gymJoiningbutton = view.findViewById(R.id.gym_joining_button);
         gymJoiningbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,10 +102,7 @@ public class Gym extends Fragment {
             }
         });
 
-
-
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
         FirebaseRecyclerOptions<InventoryData> options = new FirebaseRecyclerOptions.Builder<InventoryData>()
                 .setQuery(FirebaseDatabase.getInstance().getReference().child("Gyms Inventory").child("GYM X"), InventoryData.class)
                 .build();
@@ -136,13 +112,7 @@ public class Gym extends Fragment {
 
 
 
-        return view;
     }
-
-
-
-
-
 
     @Override
     public void onStart() {
@@ -157,17 +127,14 @@ public class Gym extends Fragment {
     }
 
     public void setFragment(Fragment fragment){
-        FragmentTransaction fragmentTransaction= getChildFragmentManager().beginTransaction().replace(R.id.gym_joining_frame, fragment);
+        FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction().replace(R.id.gym_joining_frame, fragment);
         fragmentTransaction.commit();
 
     }
 
     public void setVideoFragment(Fragment fragment){
-        FragmentTransaction fragmentTransaction  = getChildFragmentManager().beginTransaction().replace(R.id.image_video_container, fragment);
+        FragmentTransaction fragmentTransaction  = getSupportFragmentManager().beginTransaction().replace(R.id.image_video_container, fragment);
         fragmentTransaction.commit();
     }
-
-
-
 
 }

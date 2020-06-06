@@ -54,7 +54,7 @@ public class Today extends Fragment {
         View view = inflater.inflate(R.layout.fragment_today, container, false);
 
         final String userContactNo = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber();
-        Toast.makeText(getContext(), userContactNo, Toast.LENGTH_LONG).show();
+
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
 
         weight = view.findViewById(R.id.weight);

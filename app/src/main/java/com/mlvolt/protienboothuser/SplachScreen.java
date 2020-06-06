@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SplachScreen extends AppCompatActivity {
 
-    private int SPLASH_TIME_OUT = 3000;
+    private int SPLASH_TIME_OUT = 2000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +25,7 @@ public class SplachScreen extends AppCompatActivity {
                 // Start your app main activity
                 FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
                 if(current_user!=null){
-                    Intent intent1 = new Intent(SplachScreen.this, MapsActivity.class);
+                    Intent intent1 = new Intent(SplachScreen.this, MainActivity.class);
                     SplachScreen.this.startActivity(intent1);
                     SplachScreen.this.finish();
 

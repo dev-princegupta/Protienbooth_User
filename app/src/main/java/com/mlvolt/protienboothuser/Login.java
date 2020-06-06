@@ -73,7 +73,7 @@ public class Login extends AppCompatActivity {
                 TodayModel todayModel = new TodayModel("Empty", "Update", "No", "No", "No", "0");
                 databaseReference.child(currentUserPhoneNo).setValue(todayModel);
 
-                Intent intent3 = new Intent(Login.this, MapsActivity.class);
+                Intent intent3 = new Intent(Login.this, MainActivity.class);
                 Login.this.startActivity(intent3);
                 Login.this.finish();
 
